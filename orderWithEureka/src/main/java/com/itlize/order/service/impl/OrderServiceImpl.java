@@ -30,11 +30,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO create(OrderDTO orderDTO) {
 
-       //TODO 查询商品信息(调用商品服务)
-       //TODO 计算总价
-       //TODO 扣库存(调用商品服务)
+        //TODO query product information (call product service)
+        //TODO calculates the total price
+        //TODO deduction of inventory (call goods and services)
 
-        //订单入库
+        //Order storage
         OrderMaster orderMaster = new OrderMaster();
         orderDTO.setOrderId(KeyUtil.genUniqueKey());
         BeanUtils.copyProperties(orderDTO, orderMaster);

@@ -23,35 +23,28 @@ import static java.util.Arrays.*;
 @Slf4j
 public class ClientController {
 
-    @Autowired
-    private LoadBalancerClient loadBalancerClient;
-
-    @Autowired
-    private RestTemplate restTemplate;
 
     @Autowired
     private ProductClient productClient;
 
     @GetMapping("/getProductMsg")
     public String getProductMsg() {
-        //1. The first way (use restTemplate directly, url defined)
-//        RestTemplate restTemplate = new RestTemplate();
-//        String response = restTemplate.getForObject("http://localhost:9080/msg", String.class);
 
-
-        //2. The second way (use loadBalancerClient to get the URL by the application name, and then use restTemplate)
-//        RestTemplate restTemplate = new RestTemplate();
-//        ServiceInstance serviceInstance = loadBalancerClient.choose("PRODUCT");
-//        String url = String.format("http://%s:%s", serviceInstance.getHost(), serviceInstance.getPort()) + "/msg";
-//        String response = restTemplate.getForObject(url, String.class);
-
-        //3. The third way (using @LoadBalanced, you can use the application name in restTemplate)
-        String response = restTemplate.getForObject("http://PRODUCT/msg", String.class);
-
-//        4. Apply Feign
-//        String response = productClient.productMsg();
-//
-       log.info("response={}", response);
+        String response = productClient.productMsg();
+        log.info("response={}", response);
         return response;
-    }}
+    }
 
+    @GetMapping("/getProductList")
+    public String getProductList() {
+        List<ProductInfo> productInfoList = productClient.listForOrder(Arrays.asList("157875196366160022"));
+        log.info("response={}", productInfoList);
+        return "ok";
+    }
+
+    @GetMapping("/productDecreaseStock")
+    public String productDecreaseStock() {
+        productClient.decreaseStock(Arrays.asList(new CartDTO("157875196366160022", 3)));
+        return "ok";
+    }
+}

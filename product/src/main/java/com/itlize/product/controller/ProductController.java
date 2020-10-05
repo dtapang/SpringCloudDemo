@@ -1,5 +1,6 @@
 package com.itlize.product.controller;
 
+import com.itlize.product.DTO.CartDTO;
 import com.itlize.product.VO.ProductInfoVO;
 import com.itlize.product.VO.ProductVO;
 import com.itlize.product.VO.ResultVO;
@@ -11,9 +12,7 @@ import com.itlize.product.service.ProductService;
 import com.itlize.product.utils.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,10 +73,15 @@ public class ProductController {
         return ResultVOUtil.success(productVOList);
     }
 
-    @GetMapping("/listForOrder")
-    public List<ProductInfo> listForOrder(List<String> productIdList){
-       return productInfoRepository.findByProductIdIn(productIdList);
 
 
+    @PostMapping("/listForOrder")
+    public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList) {
+        return productService.findList(productIdList);
+    }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> decreaseStockInputList) {
+        productService.decreaseStock(decreaseStockInputList);
     }
 }

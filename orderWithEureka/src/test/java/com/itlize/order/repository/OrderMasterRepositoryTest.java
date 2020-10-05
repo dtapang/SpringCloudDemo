@@ -25,11 +25,11 @@ public class OrderMasterRepositoryTest extends OrderApplicationTests {
     public void testSave() {
         OrderMaster orderMaster = new OrderMaster();
         orderMaster.setOrderId("1234567");
-        orderMaster.setBuyerName("师兄");
+        orderMaster.setBuyerName("Nick");
         orderMaster.setBuyerPhone("1886131241241");
-        orderMaster.setBuyerAddress("慕课网总部");
+        orderMaster.setBuyerAddress("Itlize NJ");
         orderMaster.setBuyerOpenid("1101110");
-        orderMaster.setOrderAmount(new BigDecimal(2.5));
+        orderMaster.setOrderAmount(new BigDecimal(12.5));
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
 

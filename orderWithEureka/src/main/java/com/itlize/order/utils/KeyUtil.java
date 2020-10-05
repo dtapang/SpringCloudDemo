@@ -9,8 +9,8 @@ import java.util.Random;
 public class KeyUtil {
 
     /**
-     * 生成唯一的主键
-     * 格式: 时间+随机数
+     * Generate a unique primary key
+     * Format: time + random number
      */
     public static synchronized String genUniqueKey() {
         Random random = new Random();

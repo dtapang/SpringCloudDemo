@@ -26,8 +26,8 @@ public class OrderDetailRepositoryTest extends OrderApplicationTests {
         orderDetail.setOrderId("123456");
         orderDetail.setProductIcon("http://xxx.com");
         orderDetail.setProductId("157875196366160022");
-        orderDetail.setProductName("皮蛋粥");
-        orderDetail.setProductPrice(new BigDecimal(0.01));
+        orderDetail.setProductName("Hot dog");
+        orderDetail.setProductPrice(new BigDecimal(1.5));
         orderDetail.setProductQuantity(2);
 
         OrderDetail result = orderDetailRepository.save(orderDetail);

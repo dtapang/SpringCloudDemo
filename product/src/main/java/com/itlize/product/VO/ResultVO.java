@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * http请求返回的最外层对象
- * Created by 廖师兄
+ * Created by yang shu
  * 2017-12-09 22:09
  */
 @Data
